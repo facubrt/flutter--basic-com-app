@@ -2,12 +2,12 @@ import 'package:basiccom/src/core/error/failures.dart';
 import 'package:basiccom/src/features/customisation/domain/repositories/customisation_repository.dart';
 import 'package:dartz/dartz.dart';
 
-class InitAppParametersUseCase {
+class ClearAppParametersUseCase {
   final CustomisationRepository repository;
 
-  InitAppParametersUseCase({required this.repository});
+  ClearAppParametersUseCase({required this.repository});
 
   Future<Either<Failure, bool>> call() {
-    return repository.initAppParameters();
+    return repository.clearAppParameters();
   }
 }

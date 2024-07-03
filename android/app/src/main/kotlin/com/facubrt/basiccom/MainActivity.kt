@@ -1,4 +1,4 @@
-package com.facubrt.bicom.bicom
+package com.facubrt.basiccom
 
 import io.flutter.embedding.android.FlutterActivity
 

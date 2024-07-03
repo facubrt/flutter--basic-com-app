@@ -1,8 +1,70 @@
+import 'package:basiccom/src/core/error/failures.dart';
+import 'package:basiccom/src/features/customisation/data/models/app_parameters_model.dart';
+import 'package:basiccom/src/features/customisation/domain/entities/app_parameters.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class CustomisationLocalDataSource {
 
+  Future<bool> initAppParameters();
+  Future<AppParametersModel> getAppParameters();
+  Future<bool> setAppParameters(AppParameters parameters);
+  Future<bool> clearAppParameters();
+
 }
+
+class HiveCustomisationLocalDataSourceImpl implements CustomisationLocalDataSource {
+
+  HiveCustomisationLocalDataSourceImpl() {
+    Hive.initFlutter();
+  }
+
+    @override
+  Future<bool> initAppParameters() async {
+    try {
+      Box<dynamic> box = await Hive.openBox('AppParameters');
+      box.put(0, AppParametersModel.empty.toJson());
+      return true;
+    } catch (error) {
+      throw LocalFailure(message: error.toString());
+    }
+  }
+
+  @override
+  Future<AppParametersModel> getAppParameters() async {
+    try {
+      Box<dynamic> box = await Hive.openBox('AppParameters');
+      
+      return AppParametersModel.fromJson(box.getAt(0));
+    } catch (error) {
+      throw LocalFailure(message: error.toString());
+    }
+  }
+
+  @override
+  Future<bool> setAppParameters(AppParameters parameters) async {
+    try {
+      Box<dynamic> box = await Hive.openBox('AppParameters');
+      box.put(0, AppParametersModel.fromEntity(parameters));
+      return true;
+    } catch (error) {
+      throw LocalFailure(message: error.toString());
+    }
+  }
+
+    @override
+  Future<bool> clearAppParameters() async {
+    try {
+      Box<dynamic> box = await Hive.openBox('AppParameters');
+      box.clear();
+      return true;
+    } catch (error) {
+      throw LocalFailure(message: error.toString());
+    }
+  }
+
+}
+
 
 ////
 

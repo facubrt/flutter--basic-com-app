@@ -5,4 +5,6 @@ class AppParameters {
   final bool highContrast;
 
   AppParameters({required this.factorSize, required this.factorText, required this.cardStyle, required this.highContrast});
+
+
 }

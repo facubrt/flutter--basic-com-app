@@ -1,10 +1,7 @@
+import 'package:basiccom/src/features/customisation/data/data_sources/local/customisation_local_data_source.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tasino/src/data/local/user_preferences.dart';
-import 'package:tasino/src/provider/config_provider.dart';
-import 'package:tasino/src/provider/tts_provider.dart';
-
 class ButtonWidget extends ConsumerWidget {
   final String image, text;
   final Color color;
