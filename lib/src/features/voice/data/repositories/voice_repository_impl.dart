@@ -6,12 +6,11 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
 class VoiceRepositoryImpl implements VoiceRepository {
-
   final VoiceLocalDataSource voiceLocalDataSource;
-   final FlutterTts tts;
+  final FlutterTts tts = FlutterTts();
 
-  VoiceRepositoryImpl({required this.voiceLocalDataSource, required this.tts});
-  
+  VoiceRepositoryImpl({required this.voiceLocalDataSource});
+
   @override
   Future<Either<Failure, bool>> clearVoiceParameters() async {
     try {
@@ -25,7 +24,8 @@ class VoiceRepositoryImpl implements VoiceRepository {
   @override
   Future<Either<Failure, VoiceParameters>> getVoiceParameters() async {
     try {
-      final VoiceParameters parameters = await voiceLocalDataSource.getVoiceParameters();
+      final VoiceParameters parameters =
+          await voiceLocalDataSource.getVoiceParameters();
       return Right(parameters);
     } on LocalFailure {
       return Left(LocalFailure(message: 'Failed to get voice parameters'));
@@ -53,9 +53,11 @@ class VoiceRepositoryImpl implements VoiceRepository {
   }
 
   @override
-  Future<Either<Failure, bool>> setVoiceParameters(VoiceParameters parameters) async {
+  Future<Either<Failure, bool>> setVoiceParameters(
+      VoiceParameters parameters) async {
     try {
-      final bool result = await voiceLocalDataSource.setVoiceParameters(parameters);
+      final bool result =
+          await voiceLocalDataSource.setVoiceParameters(parameters);
       return Right(result);
     } on LocalFailure {
       return Left(LocalFailure(message: 'Failed to set voice parameters'));

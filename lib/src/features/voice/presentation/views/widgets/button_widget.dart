@@ -1,7 +1,10 @@
 import 'package:basiccom/src/features/customisation/data/data_sources/local/customisation_local_data_source.dart';
+import 'package:basiccom/src/features/customisation/presentation/provider/customisation_controller.dart';
+import 'package:basiccom/src/features/voice/presentation/provider/voice_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 class ButtonWidget extends ConsumerWidget {
   final String image, text;
   final Color color;
@@ -13,7 +16,9 @@ class ButtonWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final appConfig = ref.watch(configProvider);
+    //final appConfig = ref.watch(configProvider);
+    final voiceController = ref.watch(voiceControllerProvider);
+    final customisationController = ref.watch(customisationControllerProvider);
     Size mq = MediaQuery.of(context).size;
     Orientation orientation = MediaQuery.of(context).orientation;
     final UserPreferences prefs = UserPreferences();
@@ -63,7 +68,7 @@ class ButtonWidget extends ConsumerWidget {
             ),
             onTap: () {
               HapticFeedback.lightImpact();
-              ref.read(appTTSProvider.notifier).speak(text);
+              ref.read(voiceControllerProvider.notifier).speak(text: text);
             },
           ),
         ),

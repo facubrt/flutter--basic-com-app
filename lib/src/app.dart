@@ -1,4 +1,4 @@
-import 'package:basiccom/src/features/voice/presentation/views/pages/home_page.dart';
+import 'package:basiccom/src/features/voice/presentation/views/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class BasicCOM extends StatelessWidget {
@@ -12,7 +12,7 @@ class BasicCOM extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      home: const HomeScreen(),
     );
   }
 }

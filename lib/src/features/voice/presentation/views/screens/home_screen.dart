@@ -1,20 +1,22 @@
 import 'package:basiccom/src/features/customisation/data/data_sources/local/customisation_local_data_source.dart';
+import 'package:basiccom/src/features/customisation/presentation/provider/customisation_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomePage extends ConsumerWidget {
-  const HomePage({super.key});
+class HomeScreen extends ConsumerWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final UserPreferences prefs = UserPreferences();
-    final appConfig = ref.watch(configProvider);
+    //final appConfig = ref.watch(configProvider);
+    final customisationController = ref.watch(customisationControllerProvider);
     return Scaffold(
       backgroundColor: appConfig.highContrast ? Colors.black : Colors.white,
       appBar: MediaQuery.of(context).orientation == Orientation.portrait
           ? AppBar(
               title: const Text(
-                'TA SiNo',
+                'Basic COM',
                 style:
                     TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
               ),
