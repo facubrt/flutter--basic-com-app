@@ -1,24 +1,13 @@
 import 'package:basiccom/src/app.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-  // Bloqueo de orientacion para pantallas chicas
-  //await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  //if(getDeviceType() == 'phone'){
-  //  SystemChrome.setPreferredOrientations([
-  //     DeviceOrientation. portraitUp,
-  //  ]);
-  //      }
-  // statusbar transparente
-  SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-
-  //final prefs = UserPreferences();
-  //await prefs.initPrefs();
+  await Hive.initFlutter();
+  await Hive.openBox('appParameters');
+  await Hive.openBox('voiceParameters');
   runApp(
     const ProviderScope(
       child: BasicCOM(),

@@ -1,5 +1,5 @@
 name: basiccom
-description: "A new Flutter project."
+description: "Aplicación de comunicación basica"
 publish_to: "none"
 
 version: 1.0.0+1
@@ -34,3 +34,10 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/images/
+
+# flutter_native_splash:
+#   color: "#003A70"
+#   image: "assets/images/tasino-iso.png"

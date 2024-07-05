@@ -1,4 +1,4 @@
-import 'package:basiccom/src/features/voice/presentation/views/screens/home_screen.dart';
+import 'package:basiccom/src/voice/presentation/views/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class BasicCOM extends StatelessWidget {
