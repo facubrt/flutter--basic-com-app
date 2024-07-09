@@ -12,7 +12,6 @@ abstract class VoiceLocalDataSource {
 }
 
 class HiveVoiceLocalDataSourceImpl implements VoiceLocalDataSource {
-
   HiveVoiceLocalDataSourceImpl() {
     Hive.initFlutter();
   }
@@ -32,7 +31,7 @@ class HiveVoiceLocalDataSourceImpl implements VoiceLocalDataSource {
   Future<VoiceParametersModel> getVoiceParameters() async {
     try {
       Box<dynamic> box = await Hive.openBox('voiceParameters');
-      
+
       return VoiceParametersModel.fromJson(box.getAt(0));
     } catch (error) {
       throw LocalFailure(message: error.toString());
@@ -43,14 +42,15 @@ class HiveVoiceLocalDataSourceImpl implements VoiceLocalDataSource {
   Future<bool> setVoiceParameters(VoiceParameters parameters) async {
     try {
       Box<dynamic> box = await Hive.openBox('voiceParameters');
-      box.put(0, VoiceParametersModel.fromEntity(parameters));
+
+      box.put(0, VoiceParametersModel.fromEntity(parameters).toJson());
       return true;
     } catch (error) {
       throw LocalFailure(message: error.toString());
     }
   }
 
-   @override
+  @override
   Future<bool> clearVoiceParameters() async {
     try {
       Box<dynamic> box = await Hive.openBox('voiceParameters');
@@ -62,5 +62,8 @@ class HiveVoiceLocalDataSourceImpl implements VoiceLocalDataSource {
   }
 
   @override
-  VoiceParametersModel get voiceParameters => Hive.box('voiceParameters').isNotEmpty ? VoiceParametersModel.fromJson(Hive.box('AppParameters').getAt(0)) : VoiceParametersModel.empty;
+  VoiceParametersModel get voiceParameters =>
+      Hive.box('voiceParameters').isNotEmpty
+          ? VoiceParametersModel.fromJson(Hive.box('voiceParameters').getAt(0))
+          : VoiceParametersModel.empty;
 }

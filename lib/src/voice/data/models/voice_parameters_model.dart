@@ -27,14 +27,14 @@ class VoiceParametersModel extends VoiceParameters {
         text: text ?? this.text,
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<dynamic, dynamic> toJson() => {
         'volume': volume,
         'rate': rate,
         'pitch': pitch,
         'text': text,
       };
 
-  factory VoiceParametersModel.fromJson(Map<String, dynamic> json) {
+  factory VoiceParametersModel.fromJson(Map<dynamic, dynamic> json) {
     return VoiceParametersModel(
       volume: json['volume'] as double,
       rate: json['rate'] as double,

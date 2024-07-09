@@ -13,38 +13,31 @@ class HomeScreen extends ConsumerWidget {
     final appParameters = ref.watch(customisationControllerProvider);
     return Scaffold(
       backgroundColor: appParameters.highContrast ? Colors.black : Colors.white,
-      appBar: MediaQuery.of(context).orientation == Orientation.portrait
-          ? AppBar(
-              title: const Text(
-                'Basic COM',
-                style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-              ),
-              backgroundColor: const Color(0xFF003A70),
-              centerTitle: true,
-              elevation: 0,
-              actions: [
-                IconButton(
-                  icon: const Icon(
-                    Icons.settings,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      FadeTransitionRoute(
-                        widget: const ConfigScreen(),
-                      ),
-                    );
-                  },
+      appBar: AppBar(
+        title: const Text(
+          'Basic COM',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        backgroundColor: const Color(0xFF003A70),
+        centerTitle: true,
+        elevation: 0,
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.settings,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                FadeTransitionRoute(
+                  widget: const ConfigScreen(),
                 ),
-              ],
-            )
-          : const PreferredSize(
-              preferredSize: Size.zero,
-              child: SafeArea(
-                child: SizedBox.shrink(),
-              )),
+              );
+            },
+          ),
+        ],
+      ),
       body: MediaQuery.of(context).orientation == Orientation.portrait
           ? Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -52,11 +45,14 @@ class HomeScreen extends ConsumerWidget {
                 BasicButtonWidget(
                     image: 'assets/images/afirmar_m.png',
                     text: 'Sí',
-                    color: appParameters.highContrast ? Colors.yellow : Colors.green),
+                    color: appParameters.highContrast
+                        ? Colors.yellow
+                        : Colors.green),
                 BasicButtonWidget(
                   image: 'assets/images/negar_m.png',
                   text: 'No',
-                  color: appParameters.highContrast ? Colors.purple : Colors.red,
+                  color:
+                      appParameters.highContrast ? Colors.purple : Colors.red,
                 ),
               ],
             )
@@ -66,11 +62,14 @@ class HomeScreen extends ConsumerWidget {
                 BasicButtonWidget(
                     image: 'assets/images/afirmar_m.png',
                     text: 'Sí',
-                    color: appParameters.highContrast ? Colors.yellow : Colors.green),
+                    color: appParameters.highContrast
+                        ? Colors.yellow
+                        : Colors.green),
                 BasicButtonWidget(
                   image: 'assets/images/negar_m.png',
                   text: 'No',
-                  color: appParameters.highContrast ? Colors.purple : Colors.red,
+                  color:
+                      appParameters.highContrast ? Colors.purple : Colors.red,
                 ),
               ],
             ),

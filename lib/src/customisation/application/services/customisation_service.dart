@@ -11,14 +11,6 @@ class CustomisationService {
     }
   }
 
-  Future<bool> setHighContrast(bool highContrast) async {
-    final result = await repository.setHighContrast(highContrast);
-    return result.fold(
-    (l) => throw l,
-    (r) => r,
-    );
-  }
-
   Future<bool> setAppParameters(AppParameters parameters) async {
     final result = await repository.setAppParameters(parameters);
 

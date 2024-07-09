@@ -5,9 +5,8 @@ import 'package:dartz/dartz.dart';
 abstract class CustomisationRepository {
   Future<Either<Failure, bool>> initAppParameters();
   Future<Either<Failure, bool>> setAppParameters(AppParameters parameters);
-  Future<Either<Failure, bool>> setHighContrast(bool highContrast);
   Future<Either<Failure, AppParameters>> getAppParameters();
   Future<Either<Failure, bool>> clearAppParameters();
-  bool get isAppParametersSet; 
+  bool get isAppParametersSet;
   AppParameters get appParameters;
 }

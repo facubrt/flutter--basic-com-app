@@ -1,5 +1,4 @@
-
-
+import 'package:basiccom/core/constants/constants.dart';
 import 'package:basiccom/src/customisation/domain/entities/app_parameters.dart';
 
 class AppParametersModel extends AppParameters {
@@ -8,11 +7,11 @@ class AppParametersModel extends AppParameters {
       required super.factorText,
       required super.cardStyle,
       required super.highContrast});
-  
+
   static AppParametersModel empty = AppParametersModel(
-    factorSize: 0.04,
-    factorText: 'predeterminado',
-    cardStyle: 'Texto e Imagen',
+    factorSize: 0.03,
+    factorText: FACTOR_TEXT_DEFAULT,
+    cardStyle: TEXT_AND_IMAGE_CARD_STYLE,
     highContrast: false,
   );
 
@@ -21,12 +20,12 @@ class AppParametersModel extends AppParameters {
     String? factorText,
     String? cardStyle,
     bool? highContrast,
-  }) => AppParametersModel(
-        factorSize: factorSize ?? this.factorSize,
-        factorText: factorText ?? this.factorText,
-        cardStyle: cardStyle ?? this.cardStyle,
-        highContrast: highContrast ?? this.highContrast);
-
+  }) =>
+      AppParametersModel(
+          factorSize: factorSize ?? this.factorSize,
+          factorText: factorText ?? this.factorText,
+          cardStyle: cardStyle ?? this.cardStyle,
+          highContrast: highContrast ?? this.highContrast);
 
   Map<dynamic, dynamic> toJson() => {
         'factorSize': factorSize,
@@ -34,18 +33,20 @@ class AppParametersModel extends AppParameters {
         'cardStyle': cardStyle,
         'highContrast': highContrast,
       };
-  
-  factory AppParametersModel.fromJson(Map<dynamic, dynamic> json) => AppParametersModel(
-    factorSize: json['factorSize'],
-    factorText: json['factorText'],
-    cardStyle: json['cardStyle'],
-    highContrast: json['highContrast'],
-  );
 
-  factory AppParametersModel.fromEntity(AppParameters entity) => AppParametersModel(
-    factorSize: entity.factorSize,
-    factorText: entity.factorText,
-    cardStyle: entity.cardStyle,
-    highContrast: entity.highContrast,
-  );
+  factory AppParametersModel.fromJson(Map<dynamic, dynamic> json) =>
+      AppParametersModel(
+        factorSize: json['factorSize'],
+        factorText: json['factorText'],
+        cardStyle: json['cardStyle'],
+        highContrast: json['highContrast'],
+      );
+
+  factory AppParametersModel.fromEntity(AppParameters entity) =>
+      AppParametersModel(
+        factorSize: entity.factorSize,
+        factorText: entity.factorText,
+        cardStyle: entity.cardStyle,
+        highContrast: entity.highContrast,
+      );
 }

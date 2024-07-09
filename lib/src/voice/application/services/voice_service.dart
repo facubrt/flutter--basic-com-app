@@ -19,8 +19,10 @@ class VoiceService {
     return repository.getVoiceParameters();
   }
 
-  Future<Either<Failure, bool>> setVoiceParameters(VoiceParameters parameters) async {
-    return repository.setVoiceParameters(parameters);
+  Future<bool> setVoiceParameters(VoiceParameters parameters) async {
+    final result = await repository.setVoiceParameters(parameters);
+
+    return result.fold((l) => throw l, (r) => r);
   }
 
   Future<Either<Failure, bool>> speak(String text) async {
@@ -30,6 +32,6 @@ class VoiceService {
   Future<Either<Failure, bool>> clearVoiceParameters() async {
     return repository.clearVoiceParameters();
   }
-  
+
   VoiceParameters get voiceParameters => repository.voiceParameters;
 }

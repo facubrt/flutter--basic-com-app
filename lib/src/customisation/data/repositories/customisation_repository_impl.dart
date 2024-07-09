@@ -39,16 +39,6 @@ class CustomisationRepositoryImpl implements CustomisationRepository {
   }
 
   @override
-  Future<Either<Failure, bool>> setHighContrast(bool highContrast) async {
-    try {
-      final bool result = await customisationLocalDataSource.setHighContrast(highContrast);
-      return Right(result);
-    } on LocalFailure {
-      return Left(LocalFailure(message: 'Failed setting app parameter'));
-    }
-  }
-
-  @override
   Future<Either<Failure, bool>> setAppParameters(AppParameters parameters) async {
      try {
       final bool result = await customisationLocalDataSource.setAppParameters(parameters);

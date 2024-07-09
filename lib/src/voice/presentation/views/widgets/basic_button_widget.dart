@@ -38,21 +38,24 @@ class BasicButtonWidget extends ConsumerWidget {
                               ? orientation == Orientation.portrait
                                   ? mq.width * 0.6
                                   : mq.width * 0.4
-                              : mq.width * 0.3,
+                              : orientation == Orientation.portrait
+                                  ? mq.width * 0.6
+                                  : mq.width * 0.2,
                         )
                       : const SizedBox.shrink(),
                   appParameters.cardStyle != 'Solo imagen'
                       ? Text(
                           text.toUpperCase(),
                           style: TextStyle(
-                              //fontSize: MediaQuery.of(context).size.height * 0.1,
                               fontSize: appParameters.cardStyle == "Solo texto"
                                   ? orientation == Orientation.portrait
-                                      ? mq.width * 0.3
-                                      : mq.height * 0.3
+                                      ? mq.width * appParameters.factorSize * 4
+                                      : mq.height * appParameters.factorSize * 8
                                   : orientation == Orientation.portrait
-                                      ? mq.width * 0.14
-                                      : mq.height * 0.1,
+                                      ? mq.width * appParameters.factorSize * 2
+                                      : mq.width *
+                                          appParameters.factorSize *
+                                          1.2,
                               fontWeight: FontWeight.bold,
                               color: appParameters.highContrast
                                   ? Colors.black
