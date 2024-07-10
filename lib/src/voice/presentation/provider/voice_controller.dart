@@ -20,13 +20,13 @@ class VoiceController extends _$VoiceController {
   }
 
   Future<bool> setVolume(double volume) async {
-    double _volume = state.volume;
-    if (_volume + volume > 0 && _volume + volume <= 1) {
-      _volume += volume;
+    double currentVolume = state.volume;
+    if (currentVolume + volume > 0 && currentVolume + volume <= 1) {
+      currentVolume += volume;
     }
 
     final VoiceParameters parameters = VoiceParameters(
-      volume: double.parse(_volume.toStringAsFixed(2)),
+      volume: double.parse(currentVolume.toStringAsFixed(2)),
       rate: state.rate,
       pitch: state.pitch,
       text: state.text,
@@ -36,13 +36,13 @@ class VoiceController extends _$VoiceController {
   }
 
   Future<bool> setRate(double rate) async {
-    double _rate = state.rate;
-    if (_rate + rate > 0 && _rate + rate <= 1) {
-      _rate += rate;
+    double currentRate = state.rate;
+    if (currentRate + rate > 0 && currentRate + rate <= 1) {
+      currentRate += rate;
     }
     final VoiceParameters parameters = VoiceParameters(
       volume: state.volume,
-      rate: double.parse(_rate.toStringAsFixed(2)),
+      rate: double.parse(currentRate.toStringAsFixed(2)),
       pitch: state.pitch,
       text: state.text,
     );
@@ -51,14 +51,14 @@ class VoiceController extends _$VoiceController {
   }
 
   Future<bool> setPitch(double pitch) async {
-    double _pitch = state.pitch;
-    if (_pitch + pitch > 0 && _pitch + pitch <= 1) {
-      _pitch += pitch;
+    double currentPitch = state.pitch;
+    if (currentPitch + pitch > 0 && currentPitch + pitch <= 1) {
+      currentPitch += pitch;
     }
     final VoiceParameters parameters = VoiceParameters(
       volume: state.volume,
       rate: state.rate,
-      pitch: double.parse(_pitch.toStringAsFixed(2)),
+      pitch: double.parse(currentPitch.toStringAsFixed(2)),
       text: state.text,
     );
 
