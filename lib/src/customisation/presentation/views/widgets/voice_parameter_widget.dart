@@ -1,5 +1,4 @@
 import 'package:basiccom/src/customisation/presentation/provider/customisation_controller.dart';
-import 'package:basiccom/src/voice/presentation/provider/voice_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -17,7 +16,6 @@ class VoiceParameterWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final appParameters = ref.watch(customisationControllerProvider);
-    final voiceParameters = ref.watch(voiceControllerProvider);
     final Orientation orientation = MediaQuery.of(context).orientation;
     final Size size = MediaQuery.of(context).size;
     return Column(
@@ -52,7 +50,7 @@ class VoiceParameterWidget extends ConsumerWidget {
                       : size.height * 0.1,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(500),
-                    color: voiceParameters.pitch > 0.05
+                    color: parameter > 0.05
                         ? appParameters.highContrast
                             ? Colors.white
                             : const Color(0xFF003A70)
